@@ -21,6 +21,6 @@ namespace Nastol
 
         public string Patronomic { get; set; }
 
-        public DateTime DateofBirth { get; set; }
+        public string DateofBirth { get; set; }
     }
 }

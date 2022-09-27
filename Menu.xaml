@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nastol"
         mc:Ignorable="d"
-        Title="Menu" Background="White" Height="500" Width="550">
+        Title="Menu" Background="White" Height="500" Width="550"
+
+        ResizeMode="CanMinimize">
 
     <Grid >
         <Grid.ColumnDefinitions>

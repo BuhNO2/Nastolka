@@ -28,7 +28,7 @@ namespace Nastol
 
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
-            Window window = new MainWindow();
+            AuthUser window = new AuthUser();
             window.Show();
             this.Close();
         }

@@ -7,13 +7,6 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Nastol
 {
@@ -27,13 +20,12 @@ namespace Nastol
         {
             InitializeComponent();
             this.user = user;
-           ResizeMode = ResizeMode.NoResize;
-            ResizeMode = ResizeMode.CanMinimize;
+
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
-           Window window = new MainWindow();
+           AuthUser window = new AuthUser();
             window.Show();
             this.Close();
         }
@@ -56,11 +48,11 @@ namespace Nastol
                 Name = TextName.Text,
                 Surname = TextSurname.Text,
                 Patronomic = TextPatronomic.Text,
-                DateofBirth = DateTime.Parse(TextDateofBirth.Text),
+                DateofBirth = TextDateofBirth.Text,
                 Enterprice = TextEnterprice.Text,
             });
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://apis.api-mauijobs.site/Users?" + jsonString);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://localhost:25565/Auth?"/*https://apis.api-mauijobs.site/Users?"*/ + jsonString);
             request.Method = "POST";
             request.ContentType = "text/json";
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
