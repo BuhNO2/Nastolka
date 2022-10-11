@@ -20,6 +20,7 @@ namespace Nastol
         {
             InitializeComponent();
             this.user = user;
+            UpdateData();
 
         }
 
@@ -27,16 +28,20 @@ namespace Nastol
         {
            AuthUser window = new AuthUser();
             window.Show();
-            this.Close();
+            Close();
         }
 
-        private void UpdateBut(object sender, RoutedEventArgs e)
+        private void UpdateData()
         {
             TextName.Text = user.Name;
             TextSurname.Text = user.Surname;
             TextPatronomic.Text = user.Patronomic;
-            TextDateofBirth.Text = user.DateofBirth.ToString();
+            TextDateofBirth.Text = user.DateofBirth;
             TextEnterprice.Text = user.Enterprice;
+        }
+        private void UpdateBut(object sender, RoutedEventArgs e)
+        {
+            UpdateData();
         }
 
         private void SaveData(object sender, RoutedEventArgs e)
@@ -52,7 +57,7 @@ namespace Nastol
                 Enterprice = TextEnterprice.Text,
             });
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://localhost:25565/Auth?"/*https://apis.api-mauijobs.site/Users?"*/ + jsonString);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://apis.api-mauijobs.site/Users?" + jsonString);
             request.Method = "POST";
             request.ContentType = "text/json";
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -69,9 +74,16 @@ namespace Nastol
 
         private void UsersClick(object sender, RoutedEventArgs e)
         {
-            Window secondWindow = new UsersGrid();
+            UsersGrid secondWindow = new UsersGrid(user);
             secondWindow.Show();
-            this.Close();
+            Close();
+        }
+
+        private void MarksClick(object sender, RoutedEventArgs e)
+        {
+            TasksTable window = new TasksTable(user);
+            window.Show();
+            Close();
         }
     }
 }

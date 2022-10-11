@@ -28,17 +28,13 @@ namespace Nastol
             return BitConverter.ToString(hash).Replace("-", "");
         }
 
-        private string _isAuth = "";
 
         private async void AuthClick(object sender, RoutedEventArgs e)
         {
-            /*    if (LoginUser.Text == null || PassUser.Text == null)
-                    return;*/
 
             string url = "https://apis.api-mauijobs.site/Auth";
             string urlLocal = "https://localhost:25565/Auth";
-
-            User userAuth = new User()
+           User userAuth = new User()
             {
                 ID = 1,
                 Login = GetHash(LoginUser.Text),
@@ -47,9 +43,9 @@ namespace Nastol
                 Surname = "",
                 Name = "",
                 Patronomic = "",
-                DateofBirth = ""
+                DateofBirth = "",
+                RoleId = 3
             };
-
             User newUser = new User();
 
             string json = JsonConvert.SerializeObject(userAuth);
@@ -57,23 +53,24 @@ namespace Nastol
 
             HttpClient client = new HttpClient();
             content.Headers.ContentType = MediaTypeHeaderValue.Parse(@"application/json");
-            HttpResponseMessage response = await client.PostAsync(urlLocal, content);
-           
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 HttpContent responseContent = response.Content;
-                var a = await responseContent.ReadAsStringAsync();   
+                var a = await responseContent.ReadAsStringAsync();
                 newUser = JsonConvert.DeserializeObject<User>(a);
+
+                Window secondWindow = new Menu(newUser);
+                secondWindow.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show(" Неверный логин или пароль!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
 
-
-
-
-
-            Window secondWindow = new Menu(newUser);
-            secondWindow.Show();
-            Close();
         }
 
     }
