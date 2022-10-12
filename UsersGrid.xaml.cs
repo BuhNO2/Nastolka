@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Nastol
 {
@@ -19,16 +11,54 @@ namespace Nastol
     /// </summary>
     public partial class UsersGrid : Window
     {
-        public UsersGrid()
+        User user;
+        public UsersGrid(User user)
         {
             InitializeComponent();
+            this.user = user;
             ResizeMode = ResizeMode.NoResize;
             ResizeMode = ResizeMode.CanMinimize;
+
+            TableInfo();
+
+
+        }
+
+        private async void TableInfo()
+        {
+            string url = "https://apis.api-mauijobs.site/Auth";
+            User ArrayUsers = new User()
+            {
+                ID = 1,
+                Login = "",
+                Password = "",
+                Enterprice = "",
+                Surname = "",
+                Name = "",
+                Patronomic = "",
+                DateofBirth = "",
+                RoleId = 3
+            };
+           
+            string json = JsonConvert.SerializeObject(ArrayUsers);
+            HttpContent content = new StringContent(json);
+
+            HttpClient client = new HttpClient();
+            content.Headers.ContentType = MediaTypeHeaderValue.Parse(@"application/json");
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            HttpContent responseContent = response.Content;
+            var    a = await responseContent.ReadAsStringAsync();
+            UGrid.AutoGenerateColumns = true;
+            //UGrid = (DataGrid)JsonConvert.DeserializeObject(a, (typeof(DataGrid)));
+            
+            User[] UserItems = JsonConvert.DeserializeObject<User[]>(a);
+            UGrid.ItemsSource = UserItems;
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
-            AuthUser window = new AuthUser();
+            Menu window = new Menu(user);
             window.Show();
             this.Close();
         }
