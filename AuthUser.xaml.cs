@@ -57,7 +57,7 @@ namespace Nastol
 
             HttpClient client = new HttpClient();
             content.Headers.ContentType = MediaTypeHeaderValue.Parse(@"application/json");
-            HttpResponseMessage response = await client.PostAsync(urlLocal, content);
+            HttpResponseMessage response = await client.PostAsync(url, content);
            
             if (response.StatusCode == HttpStatusCode.OK)
             {
