@@ -27,6 +27,7 @@ namespace Nastol
         private async void TableInfo()
         {
             string url = "https://apis.api-mauijobs.site/Auth";
+            string urlLocal = "https://localhost:25565/Auth";
             User ArrayUsers = new User()
             {
                 ID = 1,
@@ -45,7 +46,7 @@ namespace Nastol
 
             HttpClient client = new HttpClient();
             content.Headers.ContentType = MediaTypeHeaderValue.Parse(@"application/json");
-            HttpResponseMessage response = await client.PostAsync(url, content);
+            HttpResponseMessage response = await client.PostAsync(urlLocal, content);
 
             HttpContent responseContent = response.Content;
             var    a = await responseContent.ReadAsStringAsync();
@@ -61,6 +62,11 @@ namespace Nastol
             Menu window = new Menu(user);
             window.Show();
             this.Close();
+        }
+
+        private void UpdateClick(object sender, RoutedEventArgs e)
+        {
+            TableInfo();
         }
     }
 }
