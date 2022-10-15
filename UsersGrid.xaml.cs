@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Windows;
@@ -26,35 +27,18 @@ namespace Nastol
 
         private async void TableInfo()
         {
-            string url = "https://apis.api-mauijobs.site/Auth";
-            string urlLocal = "https://localhost:25565/Auth";
-            User ArrayUsers = new User()
-            {
-                ID = 1,
-                Login = "",
-                Password = "",
-                Enterprice = "",
-                Surname = "",
-                Name = "",
-                Patronomic = "",
-                DateofBirth = "",
-                RoleId = 3
-            };
+            string url = "https://apis.api-mauijobs.site/Users";
            
-            string json = JsonConvert.SerializeObject(ArrayUsers);
-            HttpContent content = new StringContent(json);
-
             HttpClient client = new HttpClient();
-            content.Headers.ContentType = MediaTypeHeaderValue.Parse(@"application/json");
-            HttpResponseMessage response = await client.PostAsync(urlLocal, content);
+            HttpResponseMessage response = await client.GetAsync(url);
 
             HttpContent responseContent = response.Content;
             var    a = await responseContent.ReadAsStringAsync();
-            UGrid.AutoGenerateColumns = true;
-            //UGrid = (DataGrid)JsonConvert.DeserializeObject(a, (typeof(DataGrid)));
-            
+            UGrid.AutoGenerateColumns = true;        
             User[] UserItems = JsonConvert.DeserializeObject<User[]>(a);
             UGrid.ItemsSource = UserItems;
+/*            DatePicker datePicker = new DatePicker();
+            UGrid.Columns[7].CellStyle = ;*/
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)

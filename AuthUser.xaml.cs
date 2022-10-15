@@ -31,13 +31,13 @@ namespace Nastol
 
         private async void AuthClick(object sender, RoutedEventArgs e)
         {
-
+            AuthButt.IsEnabled = false;
             string url = "https://apis.api-mauijobs.site/Auth";
             string urlLocal = "https://localhost:25565/Auth";
            User userAuth = new User()
             {
                 ID = 1,
-                Login = GetHash(LoginUser.Text),
+                Login = LoginUser.Text,
                 Password = GetHash(PassUser.Password),
                 Enterprice = "",
                 Surname = "",
@@ -53,7 +53,7 @@ namespace Nastol
 
             HttpClient client = new HttpClient();
             content.Headers.ContentType = MediaTypeHeaderValue.Parse(@"application/json");
-            HttpResponseMessage response = await client.PostAsync(urlLocal, content);
+            HttpResponseMessage response = await client.PostAsync(url, content);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -69,7 +69,6 @@ namespace Nastol
             {
                 MessageBox.Show(" Неверный логин или пароль!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
 
         }
 

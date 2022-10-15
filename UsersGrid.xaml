@@ -30,8 +30,8 @@
         <WrapPanel Grid.Row="2" Grid.Column ="0" Margin="0,10,0,0">
             <Button Content="Назад" Click="CloseWindow"  Background="White" BorderThickness="1" Padding="53,5,52,5" FontSize="18" HorizontalAlignment="Stretch" Margin="0,0,0,5" />
         </WrapPanel>
-        
-        <DataGrid x:Name="UGrid" Grid.Row="1" Grid.Column="1" Margin="0,5,10,0" >
+
+        <DataGrid x:Name="UGrid" Grid.Row="1" Grid.Column="1" Margin="0,5,10,0">
             
         </DataGrid>
     </Grid>

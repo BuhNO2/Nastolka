@@ -1,12 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
+using System.Net.Http;
+using System.Security.Policy;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Text.Json.Serialization;
 
 namespace Nastol
 {
@@ -44,10 +49,12 @@ namespace Nastol
             UpdateData();
         }
 
-        private void SaveData(object sender, RoutedEventArgs e)
+        private async void SaveData(object sender, RoutedEventArgs e)
         {
-            bool isOkay;
-            string jsonString = JsonSerializer.Serialize<User>(new User()
+            string url = "https://apis.api-mauijobs.site/Auth";
+            string urlLocal = "https://localhost:25565/Auth";
+
+            User UserData = new User()
             {
                 ID = user.ID,
                 Name = TextName.Text,
@@ -55,23 +62,23 @@ namespace Nastol
                 Patronomic = TextPatronomic.Text,
                 DateofBirth = TextDateofBirth.Text,
                 Enterprice = TextEnterprice.Text,
-            });
+            };
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://apis.api-mauijobs.site/Users?" + jsonString);
-            request.Method = "POST";
-            request.ContentType = "text/json";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            using (Stream stream = response.GetResponseStream())
+            string json = JsonConvert.SerializeObject(UserData);
+            HttpContent content = new StringContent(json);
+
+            HttpClient client = new HttpClient();
+            content.Headers.ContentType = MediaTypeHeaderValue.Parse(@"application/json");
+            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            if (response.StatusCode == HttpStatusCode.OK)
             {
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    isOkay = Convert.ToBoolean(reader.ReadToEnd());
-                }
+                HttpContent responseContent = response.Content;
+                var a = await responseContent.ReadAsStringAsync();
+                UserData = JsonConvert.DeserializeObject<User>(a);
+
             }
-            response.Close();
-
         }
-
         private void UsersClick(object sender, RoutedEventArgs e)
         {
             UsersGrid secondWindow = new UsersGrid(user);

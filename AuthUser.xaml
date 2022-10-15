@@ -37,7 +37,7 @@
                 Margin="0,0,0,20"
                 Padding="5,5,20,5"
                 PasswordChar="*" />
-            <Button
+            <Button x:Name="AuthButt"
                 FontSize="18"
                 Margin="15,5"
                 Padding="20,5,20,5"
