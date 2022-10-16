@@ -15,22 +15,25 @@ using System.Windows.Shapes;
 namespace Nastol
 {
     /// <summary>
-    /// Логика взаимодействия для MarksTable.xaml
+    /// Логика взаимодействия для ChangeUser.xaml
     /// </summary>
-    public partial class TasksTable : Window
+    public partial class ChangeUser : Window
     {
-
-        public TasksTable()
+        public ChangeUser()
         {
             InitializeComponent();
-       
         }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
+        private void BackButt_Click(object sender, RoutedEventArgs e)
         {
-            Menu window = new Menu();
-            window.Show();
-            this.Close();
+            Window secondWindow = new UsersGrid();
+            secondWindow.Show();
+            Close();
+        }
+
+        private void SaveData(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

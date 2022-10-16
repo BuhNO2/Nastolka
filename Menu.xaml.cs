@@ -20,29 +20,28 @@ namespace Nastol
     /// </summary>
     public partial class Menu : Window
     {
-        User user;
-        public Menu(User user)
+
+        public Menu()
         {
             InitializeComponent();
-            this.user = user;
             UpdateData();
 
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
-           AuthUser window = new AuthUser();
+            AuthUser window = new AuthUser();
             window.Show();
             Close();
         }
 
         private void UpdateData()
         {
-            TextName.Text = user.Name;
-            TextSurname.Text = user.Surname;
-            TextPatronomic.Text = user.Patronomic;
-            TextDateofBirth.Text = user.DateofBirth;
-            TextEnterprice.Text = user.Enterprice;
+            TextName.Text = CurrentUser.user.Name;
+            TextSurname.Text = CurrentUser.user.Surname;
+            TextPatronomic.Text = CurrentUser.user.Patronomic;
+            TextDateofBirth.Text = CurrentUser.user.DateofBirth;
+            TextEnterprice.Text = CurrentUser.user.Enterprice;
         }
         private void UpdateBut(object sender, RoutedEventArgs e)
         {
@@ -51,44 +50,46 @@ namespace Nastol
 
         private async void SaveData(object sender, RoutedEventArgs e)
         {
-            string url = "https://apis.api-mauijobs.site/Auth";
+            string url = "https://apis.api-mauijobs.site/Users";
             string urlLocal = "https://localhost:25565/Auth";
 
-            User UserData = new User()
-            {
-                ID = user.ID,
-                Name = TextName.Text,
-                Surname = TextSurname.Text,
-                Patronomic = TextPatronomic.Text,
-                DateofBirth = TextDateofBirth.Text,
-                Enterprice = TextEnterprice.Text,
-            };
+            SaveButt.IsEnabled = false;
 
-            string json = JsonConvert.SerializeObject(UserData);
+            CurrentUser.user.Name = TextName.Text;
+            CurrentUser.user.Surname = TextSurname.Text;
+            CurrentUser.user.Patronomic = TextPatronomic.Text;
+            CurrentUser.user.DateofBirth = TextDateofBirth.Text;
+            CurrentUser.user.Enterprice = TextEnterprice.Text;
+
+
+            string json = JsonConvert.SerializeObject(CurrentUser.user);
             HttpContent content = new StringContent(json);
 
             HttpClient client = new HttpClient();
             content.Headers.ContentType = MediaTypeHeaderValue.Parse(@"application/json");
-            HttpResponseMessage response = await client.PostAsync(url, content);
+
+            HttpResponseMessage response = await client.PutAsync(url, content);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 HttpContent responseContent = response.Content;
                 var a = await responseContent.ReadAsStringAsync();
-                UserData = JsonConvert.DeserializeObject<User>(a);
-
+                CurrentUser.user = JsonConvert.DeserializeObject<User>(a);
+                UpdateData();
+                SaveButt.IsEnabled = true;
             }
         }
         private void UsersClick(object sender, RoutedEventArgs e)
         {
-            UsersGrid secondWindow = new UsersGrid(user);
+            UsersGrid secondWindow = new UsersGrid();
             secondWindow.Show();
             Close();
         }
 
-        private void MarksClick(object sender, RoutedEventArgs e)
+
+        private void TaskButtClick(object sender, RoutedEventArgs e)
         {
-            TasksTable window = new TasksTable(user);
+            TasksTable window = new TasksTable();
             window.Show();
             Close();
         }

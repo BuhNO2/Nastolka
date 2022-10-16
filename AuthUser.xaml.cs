@@ -59,15 +59,16 @@ namespace Nastol
             {
                 HttpContent responseContent = response.Content;
                 var a = await responseContent.ReadAsStringAsync();
-                newUser = JsonConvert.DeserializeObject<User>(a);
+                CurrentUser.user = JsonConvert.DeserializeObject<User>(a);
 
-                Window secondWindow = new Menu(newUser);
+                Window secondWindow = new Menu();
                 secondWindow.Show();
                 Close();
             }
             else
             {
                 MessageBox.Show(" Неверный логин или пароль!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+                AuthButt.IsEnabled = true;
             }
 
         }

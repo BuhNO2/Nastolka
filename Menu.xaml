@@ -29,13 +29,12 @@
             
             <Button Click="UsersClick"
                 Background="White" BorderBrush="Black" Margin="0,10,5,0.1" BorderThickness="1"  HorizontalAlignment="Stretch" Content="Пользователи" FontSize="17"/>
-            <Button Click="MarksClick"
-                Background="White" BorderBrush="Black" Margin="0,0,5,0" BorderThickness="1" Content="Оценки" FontSize="17"/>
+            <Button Click="TaskButtClick"
+                Background="White" BorderBrush="Black" Margin="0,0,5,0" BorderThickness="1" Content="Задания" FontSize="17"/>
             <Button Background="White" BorderBrush="Black" Margin="0,0,5,0.1" BorderThickness="1"  Content="Пусто" FontSize="17"/>
         </WrapPanel>
         </Viewbox>
-        
-        
+            
         <UniformGrid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
             <WrapPanel HorizontalAlignment="Stretch" Margin="10,20,10,0" Orientation="Horizontal">
                 <StackPanel Margin="0,0,10,0">           
@@ -82,10 +81,10 @@
                 Background="Black"
                 Content="Обновить"
                 Click="UpdateBut"  />
-                        <Button HorizontalAlignment="Stretch"
+                        <Button  HorizontalAlignment="Stretch"
                 Foreground="White"
                 Margin="5,10,10,5"
-                x:Name="Save" FontSize="20"
+                x:Name="SaveButt" FontSize="20"
                 Padding="20,10,20,10"
                 Background ="Black"
                 Click="SaveData"
