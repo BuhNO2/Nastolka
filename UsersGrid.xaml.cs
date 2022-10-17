@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Net.Http;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Nastol
 {
@@ -22,7 +23,7 @@ namespace Nastol
            
         }
 
-        private async void TableInfo()
+         private async void TableInfo()
         {
             string url = "https://apis.api-mauijobs.site/Users";
 
@@ -33,9 +34,9 @@ namespace Nastol
             var a = await responseContent.ReadAsStringAsync();
 
             User[] UserItems = JsonConvert.DeserializeObject<User[]>(a);
-            UGrid.ItemsSource = UserItems; 
-            
-            
+
+            UGrid.ItemsSource = UserItems;
+       
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
@@ -52,8 +53,7 @@ namespace Nastol
 
         private void CellClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
-            Window secondWindow = new ChangeUser();
+            Window secondWindow = new ChangeUser((User)UGrid.CurrentItem);
             secondWindow.Show();
             Close();
         }

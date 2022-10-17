@@ -79,6 +79,7 @@ namespace Nastol
                 SaveButt.IsEnabled = true;
             }
         }
+
         private void UsersClick(object sender, RoutedEventArgs e)
         {
             UsersGrid secondWindow = new UsersGrid();
