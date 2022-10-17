@@ -9,9 +9,6 @@ using System.Windows;
 
 namespace Nastol
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class AuthUser : Window
     {
         public AuthUser()
@@ -20,25 +17,18 @@ namespace Nastol
             ResizeMode = ResizeMode.NoResize;
             ResizeMode = ResizeMode.CanMinimize;
         }
-        private string GetHash(string input)
-        {
-            var md5 = MD5.Create();
-            var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-            return BitConverter.ToString(hash).Replace("-", "");
-        }
-
 
         private async void AuthClick(object sender, RoutedEventArgs e)
         {
             AuthButt.IsEnabled = false;
             string url = "https://apis.api-mauijobs.site/Auth";
             string urlLocal = "https://localhost:25565/Auth";
-           User userAuth = new User()
+          
+            User userAuth = new User()
             {
                 ID = 1,
                 Login = LoginUser.Text,
-                Password = GetHash(PassUser.Password),
+                Password = HashingSting.HashingPassword(PassUser.Password),
                 Enterprice = "",
                 Surname = "",
                 Name = "",
@@ -46,7 +36,6 @@ namespace Nastol
                 DateofBirth = "",
                 RoleId = 3
             };
-            User newUser = new User();
 
             string json = JsonConvert.SerializeObject(userAuth);
             HttpContent content = new StringContent(json);
