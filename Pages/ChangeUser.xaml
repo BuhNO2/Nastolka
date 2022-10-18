@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nastol"
         mc:Ignorable="d"
-        Title="ChangeUser" WindowStartupLocation="CenterScreen" Height="770">
+        Title="ChangeUser" WindowStartupLocation="CenterScreen" Height="770" Width="450">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition ></ColumnDefinition>

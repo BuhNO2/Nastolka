@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\liliili\\source\\repos\\Nastolka1\\Nastol.csproj": {}
+    "C:\\Users\\Никита\\source\\repos\\Nastolka\\Nastol.csproj": {}
   },
   "projects": {
-    "C:\\Users\\liliili\\source\\repos\\Nastolka1\\Nastol.csproj": {
+    "C:\\Users\\Никита\\source\\repos\\Nastolka\\Nastol.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\liliili\\source\\repos\\Nastolka1\\Nastol.csproj",
+        "projectUniqueName": "C:\\Users\\Никита\\source\\repos\\Nastolka\\Nastol.csproj",
         "projectName": "Nastol",
-        "projectPath": "C:\\Users\\liliili\\source\\repos\\Nastolka1\\Nastol.csproj",
-        "packagesPath": "C:\\Users\\liliili\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\liliili\\source\\repos\\Nastolka1\\obj\\",
+        "projectPath": "C:\\Users\\Никита\\source\\repos\\Nastolka\\Nastol.csproj",
+        "packagesPath": "C:\\Users\\Никита\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Никита\\source\\repos\\Nastolka\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\liliili\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Никита\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -69,7 +69,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

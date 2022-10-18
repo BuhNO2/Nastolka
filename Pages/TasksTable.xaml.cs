@@ -23,7 +23,6 @@ namespace Nastol
         public TasksTable()
         {
             InitializeComponent();
-       
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)

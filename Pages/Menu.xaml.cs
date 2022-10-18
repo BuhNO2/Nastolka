@@ -69,8 +69,8 @@ namespace Nastol
 
         private void UsersClick(object sender, RoutedEventArgs e)
         {
-            UsersGrid secondWindow = new UsersGrid();
-            secondWindow.Show();
+            UsersGrid Window = new UsersGrid();
+            Window.Show();
             Close();
         }
 

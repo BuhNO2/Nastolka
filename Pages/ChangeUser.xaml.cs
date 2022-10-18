@@ -53,13 +53,14 @@ namespace Nastol
             
             if (updatedUser != null)
             {
-                Window secondWindow = new UsersGrid();
-                secondWindow.Show();
+                Window Window = new UsersGrid();
+                Window.Show();
                 Close();
             }
             else
             {
-                //Тут если не получилось
+                MessageBox.Show(" Ошибка", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                SaveButt.IsEnabled = true;
             }
         }
     }

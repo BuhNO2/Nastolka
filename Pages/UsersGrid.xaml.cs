@@ -15,10 +15,6 @@ namespace Nastol
         {
 
             InitializeComponent();
-
-            ResizeMode = ResizeMode.NoResize;
-            ResizeMode = ResizeMode.CanMinimize;
-
             TableInfo();
            
         }
@@ -36,7 +32,7 @@ namespace Nastol
             User[] UserItems = JsonConvert.DeserializeObject<User[]>(a);
 
             UGrid.ItemsSource = UserItems;
-       
+            
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
@@ -53,8 +49,8 @@ namespace Nastol
 
         private void CellClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Window secondWindow = new ChangeUser((User)UGrid.CurrentItem);
-            secondWindow.Show();
+            Window Window = new ChangeUser((User)UGrid.CurrentItem);
+            Window.Show();
             Close();
         }
     }

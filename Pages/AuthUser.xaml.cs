@@ -10,8 +10,6 @@ namespace Nastol
         public AuthUser()
         {
             InitializeComponent();
-            ResizeMode = ResizeMode.NoResize;
-            ResizeMode = ResizeMode.CanMinimize;
         }
 
         private async void AuthClick(object sender, RoutedEventArgs e)

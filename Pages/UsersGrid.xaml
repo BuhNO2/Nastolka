@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nastol"
         mc:Ignorable="d"
-        Title="UsersGrid"  Height="700" Width="1200" WindowStartupLocation="CenterScreen">
+        Title="UsersGrid"  Height="700" Width="1200" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="170"></ColumnDefinition>
@@ -31,7 +31,7 @@
             <Button Content="Назад" Click="CloseWindow"  Background="White" BorderThickness="1" Padding="53,5,52,5" FontSize="18" HorizontalAlignment="Stretch" Margin="0,0,0,5" />
         </WrapPanel>
 
-        <DataGrid x:Name="UGrid" Grid.Row="1" Grid.Column="1" Margin="0,5,10,0" MouseDoubleClick="CellClick">
+        <DataGrid x:Name="UGrid" Grid.Row="1" Grid.Column="1" Margin="0,5,10,0" MouseDoubleClick="CellClick" IsReadOnly="True">
             
         </DataGrid>
     </Grid>
